@@ -4,6 +4,7 @@ import (
 	"log"
 
 	"github.com/gofiber/fiber/v2"
+	"github.com/gofiber/fiber/v2/middleware/logger"
 	"github.com/joho/godotenv"
 	"gorm.io/gorm"
 )
@@ -49,6 +50,7 @@ func main() {
 	}
 
 	app := fiber.New()
+	app.Use(logger.New())
 	repository.SetupRoutes(app)
 	app.Listen(":8000")
 }
