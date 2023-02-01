@@ -4,6 +4,8 @@ import (
 	"log"
 	"time"
 
+	"github.com/RahulMj21/postgres-fiber/models"
+	"github.com/RahulMj21/postgres-fiber/storage"
 	"github.com/gofiber/fiber/v2"
 	"github.com/gofiber/fiber/v2/middleware/logger"
 	"github.com/joho/godotenv"
@@ -75,13 +77,13 @@ func main() {
 		log.Fatal(err)
 	}
 
-	// db, err := storage.NewConnection(config)
+	db, err := storage.NewConnection(config)
 	if err != nil {
 		log.Fatal(err)
 	}
 
 	repository := Repository{
-		// DB: db
+		DB: db
 	}
 
 	app := fiber.New()
